@@ -41,7 +41,7 @@ class App extends React.Component {
           <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
           Surname
           <input name="surname" type="text" value={this.state.surname} onChange={this.handleChange} />
-          <button type="submit" value="submit" onClick={this.onSubmit}/>
+          <input type="submit" onClick={this.onSubmit}/>
       </form>
 
 {this.state.list.map((list, index) =>{
