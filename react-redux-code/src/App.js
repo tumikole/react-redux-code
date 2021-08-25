@@ -1,12 +1,28 @@
 import React from 'react';
+import Form from '../src/Components/form'
+import Table from '../src/Components/table'
+import { v4 as uuidv4 } from 'uuid';
+
 
 class App extends React.Component {
+  appData;
   constructor(props) {
     super(props);
     this.state = {
       list: [],
-      name: '',
-      surname: ''
+     person :{
+       id:uuidv4(),
+      email: '',
+      password: '',
+      retypePassword: '',
+      firstname: '',
+      lastname: '',
+      phoneNumber: '',
+      address: '',
+      province:'',
+      city: '',
+      zip: ''
+    }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,14 +35,46 @@ class App extends React.Component {
   }
 
   onSubmit(event){
-    const newList = []
-      event.preventDefault();
-      this.setState({
+    const {list,person} = this.state
+    list.push(person)
+    event.preventDefault();
+    localStorage.setItem('data',JSON.stringify(list));
+      }
+
+      componentDidMount() {
+        this.appData = JSON.parse(localStorage.getItem('data'));
         
-        ...this.state,list:[...this.state.list, {name:this.state.name,surname:this.state.surname}]
-      })
-      newList.push({...this.state,list:[...this.state.list, {name:this.state.name,surname:this.state.surname}]})
-  }
+        if (localStorage.getItem('data')) {
+          const { email, password, retypePassword, firstname, lastname, phoneNumber, address,province, city, zip} = this.appData
+            this.setState({
+              email: email,
+               password: password,
+               retypePassword: retypePassword,
+               firstname: firstname,
+               lastname: lastname,
+               phoneNumber: phoneNumber,
+               address: address,
+               province: province,
+               city: city,
+               zip: zip
+        })
+    } else {
+        this.setState({
+          email: '',
+          password: '',
+          retypePassword: '',
+          firstname: '',
+          lastname: '',
+          phoneNumber: '',
+          address: '',
+          province:'',
+          city: '',
+          zip: ''
+        })
+    }
+    }
+      
+  
   
   
   
@@ -34,44 +82,14 @@ class App extends React.Component {
     
     
     return (
-<div>
-      <form>
-        
-          Name:
-          <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
-          Surname
-          <input name="surname" type="text" value={this.state.surname} onChange={this.handleChange} />
-          <input type="submit" onClick={this.onSubmit}/>
-      </form>
-
-{this.state.list.map((list, index) =>{
-  return(
-
-
-    <table>
-      <tr>
-<th>Name</th>
-<th>Surname</th>
-
-
-      </tr>
-    
-      <tr key={index}>
-         <td>
-           {list.name}
-
-         </td>
-         <td>
-           {list.surname}
-           
-         </td>
-      </tr>
-      </table>
-  )
-})}
-
-      
+      <div>
+      <h1>Register Form</h1>
+      <Form myForm={this.state.person} handleChange={this.handleChange} onSubmit={this.onSubmit}/>
+      <Table list={this.state.list} />
       </div>
-     )};
+
+
+
+    )}
      };
 export default App;
