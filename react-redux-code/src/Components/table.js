@@ -17,7 +17,6 @@ class Table extends React.Component {
                      <th scope="col">Firstname</th>
                      <th scope="col">Lastname</th>
                      <th scope="col">phoneNo:</th>
-                     <th scope="col">Address</th>
         
                  </tr>
             </thead>
@@ -39,14 +38,7 @@ class Table extends React.Component {
               <td >
                 {list.phoneNumber}
               </td>
-              <td className="address-section">
-                  <p>{list.address}</p>
-                  <p>{list.surbub}</p>
-                  <p>{list.province}</p>
-                  <p>{list.city}</p>
-                  <p>{list.zip}</p>
-                
-              </td>
+             
              </tr>
 )
 })}

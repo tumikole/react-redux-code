@@ -1,7 +1,19 @@
 import React from 'react';
+import Navbar from '../src/Components/navbar'
+// import logo from '../src/assets/logo.png'
+import Facebook from '../src/assets/Facebook.png'
+import Google from '../src/assets/google.png'
 import Form from '../src/Components/form'
 import Table from '../src/Components/table'
+// import Login from '../src/Components/login'
 import { v4 as uuidv4 } from 'uuid';
+// import ReactDOM from 'react-dom';
+// import {BrowserRouter, Switch, Route, Link} from "react-router-dom"
+
+
+// import GoogleLogin from 'react-google-login';
+import './App.css'
+
 
 
 class App extends React.Component {
@@ -17,11 +29,8 @@ class App extends React.Component {
       retypePassword: '',
       firstname: '',
       lastname: '',
-      phoneNumber: '',
-      address: '',
-      province:'',
-      city: '',
-      zip: ''
+      phoneNumber: ''
+   
     }
     };
 
@@ -45,18 +54,15 @@ class App extends React.Component {
         this.appData = JSON.parse(localStorage.getItem('data'));
         
         if (localStorage.getItem('data')) {
-          const { email, password, retypePassword, firstname, lastname, phoneNumber, address,province, city, zip} = this.appData
+          const { email, password, retypePassword, firstname, lastname, phoneNumber} = this.appData
             this.setState({
               email: email,
                password: password,
                retypePassword: retypePassword,
                firstname: firstname,
                lastname: lastname,
-               phoneNumber: phoneNumber,
-               address: address,
-               province: province,
-               city: city,
-               zip: zip
+               phoneNumber: phoneNumber
+               
         })
     } else {
         this.setState({
@@ -65,11 +71,8 @@ class App extends React.Component {
           retypePassword: '',
           firstname: '',
           lastname: '',
-          phoneNumber: '',
-          address: '',
-          province:'',
-          city: '',
-          zip: ''
+          phoneNumber: ''
+         
         })
     }
     }
@@ -82,12 +85,44 @@ class App extends React.Component {
     
     
     return (
-      <div>
-      <h1>Register Form</h1>
-      <Form myForm={this.state.person} handleChange={this.handleChange} onSubmit={this.onSubmit}/>
-      <Table list={this.state.list} />
-      </div>
+      // <Router>
 
+      <>
+      <Navbar />
+      {/* <Login /> */}
+      <br/> 
+      <container className="grid-container">
+       
+         <div className="columnLeft">
+       <h1>Welcome to <span>
+         <br/>
+         <u>NeXeT</u>
+         </span></h1>
+         </div>
+         <div class="vl"></div>
+
+         <div className="columnRight">
+          <div className="columnRightVl">
+           <Form myForm={this.state.person} handleChange={this.handleChange} onSubmit={this.onSubmit}/>
+           <div className="facebookGoogle">
+           <div className="Facebook">
+          <button><img className="facebookGoogle-button" src={Facebook} width="100" height="50" alt=""/></button>
+        </div>
+        <br/>
+        <div className="Google">
+          <button><img className="facebookGoogle-button" src={Google} width="100" height="50" alt=""/></button>
+        </div>
+        </div>
+           </div>
+         </div>
+       
+      
+      </container>
+    
+           <Table list={this.state.list} />
+          
+</>
+// </Router>
 
 
     )}

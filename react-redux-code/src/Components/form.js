@@ -11,7 +11,8 @@ class Form extends React.Component {
         const {handleChange}= this.props;
         
         return (
-            <div>
+            <div className='formContainer'>
+              <br/>
               <form className="myForm">
   <div className="form-group">
         <input name="email" value={email}  onChange={handleChange} type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email"/>
@@ -37,19 +38,13 @@ class Form extends React.Component {
   <div className="form-group">
     <input name="phoneNumber" value={phoneNumber} onChange={handleChange} type="number" className="form-control" placeholder="Enter your phone number"/>
   </div>
-
-  <div class="form-group">
-    <input name="address" value={address} onChange={handleChange} type="text" className="form-control" placeholder="Enter your street address"/>
-    <input name="surbub" value={surbub} onChange={handleChange} type="text" className="form-control" placeholder="Enter your suburb"/>
-    <input name="province" value={province} onChange={handleChange} type="text" className="form-control" placeholder="Enter your province"/>
-    <input name="city" value={city} onChange={handleChange} type="text" className="form-control" placeholder="Enter your city"/>
-    <input name="zip" value={zip} onChange={handleChange} type="number" className="form-control" placeholder="Enter your zip code"/>
-  </div>
   
   <button onClick={this.props.onSubmit} type="submit" className="btn btn-primary">Submit</button>
+  <h3><small>Or sign Up with</small></h3>
+
 
 </form>
-
+<br/>
             </div>
         );
     }
